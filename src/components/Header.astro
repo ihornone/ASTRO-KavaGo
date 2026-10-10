@@ -1,0 +1,72 @@
+---
+interface Props {
+  brandName?: string;
+}
+
+const { brandName = "Kava & Go" } = Astro.props;
+
+const navLinks = [
+  { label: "ГОЛОВНА", href: "#" },
+  { label: "КОЛЕКЦІЯ КАВИ", href: "#products" },
+  { label: "ПРО НАС", href: "#about" },
+  { label: "FAQ", href: "#faq" },
+];
+---
+
+<header class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-16 pt-4 sm:pt-8 pb-4 flex items-center justify-between relative z-20">
+  <!-- Mobile Brand Logo -->
+  <a href="#" class="flex md:hidden items-center cursor-pointer select-none no-underline" style="color: #8A4B29; font-family: 'Bubblegum Sans', cursive, sans-serif; font-size: 32px; font-style: normal; font-weight: 400; line-height: 1;">
+    <span class="inline-block tracking-tight">{brandName}</span>
+  </a>
+
+  <!-- Desktop Nav Links (4 clean links, no crowding) -->
+  <nav class="hidden md:flex items-center gap-6 lg:gap-10">
+    {navLinks.map((link, idx) => (
+      <a
+        href={link.href}
+        class="transition-colors duration-200 cursor-pointer border-none bg-transparent no-underline hover:text-[#8A4B29]"
+        style={`color: ${idx === 0 ? "#8A4B29" : "#6E5849"}; text-align: center; font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 17px; font-style: normal; font-weight: ${idx === 0 ? "700" : "400"}; line-height: normal; text-transform: uppercase;`}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+
+  <!-- Desktop Centered Brand Logo (Clean text without any icons/emojis) -->
+  <a href="#" class="hidden md:block absolute inset-x-0 mx-auto w-fit cursor-pointer select-none no-underline" style="color: #8A4B29; font-family: 'Bubblegum Sans', cursive, sans-serif; font-size: 42px; font-style: normal; font-weight: 400; line-height: normal;">
+    {brandName}
+  </a>
+
+  <!-- Desktop Action Button -->
+  <a href="#products" class="hidden md:flex cursor-pointer border-none transition-transform hover:scale-105 active:scale-95 shadow-sm relative overflow-visible no-underline" style="padding: 9px 18px; align-items: center; gap: 9px; border-radius: 12px; background: #8A4B29;">
+    <span style="color: #FFFFFF; text-align: center; font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; line-height: 18px; text-transform: uppercase;">ЗАМОВИТИ КАВУ</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white" style="width: 20px; height: 20px;">
+      <path d="M7 17L17 7"></path>
+      <path d="M10 7h7v7"></path>
+    </svg>
+  </a>
+
+  <!-- Mobile Menu Button -->
+  <button id="mobile-menu-btn" aria-label="Відкрити меню" class="flex md:hidden items-center justify-center p-2.5 rounded-xl bg-[#8A4B29]/10 text-[#8A4B29] hover:bg-[#8A4B29]/20 active:scale-95 transition-all cursor-pointer border border-[#8A4B29]/25">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+      <line x1="4" x2="20" y1="12" y2="12"></line>
+      <line x1="4" x2="20" y1="6" y2="6"></line>
+      <line x1="4" x2="20" y1="18" y2="18"></line>
+    </svg>
+  </button>
+</header>
+
+<!-- Mobile Drawer -->
+<div id="mobile-nav-drawer" class="w-full max-w-[1600px] mx-auto px-4 z-30 hidden transition-all duration-300">
+  <div class="w-full bg-[#EFE6DC] border border-[#8A4B29]/20 rounded-2xl p-5 shadow-xl flex flex-col gap-4 mb-2">
+    <nav class="flex flex-col gap-2">
+      <a href="#" class="w-full text-left py-2.5 px-4 rounded-xl font-bold uppercase cursor-pointer hover:bg-black/5 text-[#2B1810] no-underline">ГОЛОВНА</a>
+      <a href="#products" class="w-full text-left py-2.5 px-4 rounded-xl font-bold uppercase cursor-pointer hover:bg-black/5 text-[#2B1810] no-underline">КОЛЕКЦІЯ КАВИ</a>
+      <a href="#about" class="w-full text-left py-2.5 px-4 rounded-xl font-bold uppercase cursor-pointer hover:bg-black/5 text-[#2B1810] no-underline">ПРО НАС</a>
+      <a href="#faq" class="w-full text-left py-2.5 px-4 rounded-xl font-bold uppercase cursor-pointer hover:bg-black/5 text-[#2B1810] no-underline">FAQ</a>
+    </nav>
+    <a href="#products" class="w-full py-3 bg-[#8A4B29] text-white text-center rounded-xl font-bold uppercase tracking-wider text-sm no-underline">
+      ЗАМОВИТИ ОНЛАЙН
+    </a>
+  </div>
+</div>

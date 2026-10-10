@@ -1,0 +1,59 @@
+---
+interface Review {
+  quote: string;
+  bgColor: string;
+  quoteColor: string;
+}
+
+const reviews: Review[] = [
+  {
+    quote: "ІДЕАЛЬНИЙ БАЛАНС СМАКУ ТА ГУСТА КРЕМА.",
+    bgColor: "#8A4325", // Rich Cinnamon Terracotta
+    quoteColor: "#6B3016",
+  },
+  {
+    quote: "ДРІП-ПАКЕТИ ВРЯТУВАЛИ МІЙ РАНОК У ДОРОЗІ!",
+    bgColor: "#314436", // Deep Specialty Roast Green
+    quoteColor: "#202E24",
+  },
+  {
+    quote: "НЕЙМОВІРНИЙ АРОМАТ ТА БЕЗДОГАННИЙ СЕРВІС.",
+    bgColor: "#C27838", // Warm Caramel Amber
+    quoteColor: "#995A22",
+  },
+];
+---
+
+<section class="w-full bg-[#F7F2EB] pt-0 pb-8 md:py-0 -mt-6 md:mt-0 relative z-20 overflow-x-auto select-none scrollbar-none">
+  <div class="flex justify-start md:justify-center overflow-x-auto snap-x snap-mandatory px-4 md:px-0 gap-3 md:gap-0 min-w-max md:min-w-0 items-stretch">
+    {reviews.map((rev) => (
+      <div
+        class="w-[88vw] sm:w-[420px] md:w-[480px] h-auto shrink-0 snap-center rounded-2xl md:rounded-none p-6 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden shadow-sm md:shadow-none transition-transform duration-300 md:hover:brightness-105 gap-6 sm:gap-8"
+        style={`background-color: ${rev.bgColor};`}
+      >
+        <!-- Top Row: 5 Gold Stars & Giant Quotation Mark -->
+        <div class="w-full flex items-center justify-between z-10">
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            {Array.from({ length: 5 }).map(() => (
+              <svg viewBox="0 0 24 24" fill="#FCE3BA" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 drop-shadow-xs">
+                <path d="M12 1.5l3.09 6.26L22 8.77l-5 4.87 1.18 6.88L12 17.27l-6.18 3.25L7 13.64l-5-4.87 6.91-1.01L12 1.5z"></path>
+              </svg>
+            ))}
+          </div>
+          <div style={`color: ${rev.quoteColor}; font-size: clamp(52px, 12vw, 84px); font-family: 'Rammetto One', cursive, sans-serif; line-height: 0.8; user-select: none;`}>
+            "
+          </div>
+        </div>
+
+        <!-- Review Quote (Height driven strictly by text content) -->
+        <div class="w-full max-w-[422px] pb-2 sm:pb-4">
+          <h3
+            style="color: #FFF8ED; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(24px, 3.2vw, 42px); font-style: normal; font-weight: 400; line-height: 1.18; text-transform: uppercase; word-break: break-word;"
+          >
+            {rev.quote}
+          </h3>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

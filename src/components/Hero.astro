@@ -1,0 +1,150 @@
+---
+interface Props {
+  headlineTop?: string;
+  headlineBottom?: string;
+  description?: string;
+  imageSrc?: string;
+}
+
+const {
+  headlineTop = "SPECIALTY",
+  headlineBottom = "KAVA & GO",
+  description = "100% арабіка свіжого обсмажування. Справжня кава з собою, дріп-пакети та добірне зерно для твого ідеального ранку.",
+  imageSrc = "/images/header-images.png",
+} = Astro.props;
+---
+
+<div class="relative w-full overflow-hidden select-none">
+  <!-- Desktop Hero -->
+  <div class="hidden md:flex relative w-full max-w-[1600px] mx-auto flex-1 flex-col justify-between px-6 lg:px-16 pt-2 pb-10 min-h-[640px]">
+    <!-- Background Large Typography -->
+    <div class="absolute inset-0 flex flex-col items-center justify-start pt-2 pointer-events-none z-0 overflow-hidden">
+      <h1
+        class="tracking-wider select-none text-center"
+        style="color: #D9C5B2; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(70px, 15.6vw, 226px); font-style: normal; font-weight: 400; line-height: 1; margin: 0px;"
+      >
+        {headlineTop}
+      </h1>
+      <h2
+        class="tracking-wider select-none text-center -mt-2 lg:-mt-6"
+        style="color: rgba(217, 197, 178, 0.45); font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(70px, 15.6vw, 226px); font-style: normal; font-weight: 400; line-height: 1; margin: 0px;"
+      >
+        {headlineBottom}
+      </h2>
+    </div>
+
+    <!-- Centered Visual Graphic (Image kept intact per instructions) -->
+    <div class="absolute inset-x-0 bottom-0 top-0 flex items-end justify-center pointer-events-none z-10 pb-0">
+      <img
+        alt="Kava and Go Coffee Showcase"
+        class="max-w-[75vw] lg:max-w-[920px] max-h-[88vh] object-contain object-bottom drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
+        src={imageSrc}
+      />
+    </div>
+
+    <!-- Foreground Interactive Content -->
+    <div class="relative z-20 w-full mt-auto pt-48 lg:pt-64 flex flex-row items-end justify-between gap-8">
+      <!-- Left Info Box & CTA -->
+      <div class="flex flex-col gap-4 max-w-xs items-start text-left">
+        <div class="bg-[#EFE6DC]/90 backdrop-blur-xs p-4 rounded-xl border border-[#8A4B29]/15 shadow-2xs">
+          <p class="text-[#3E271D] leading-snug" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 16px; font-weight: 400;">
+            {description}
+          </p>
+        </div>
+        <a
+          href="#products"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#8A4B29]/40 text-[#8A4B29] bg-[#EFE6DC]/60 hover:bg-[#8A4B29] hover:text-white transition-all cursor-pointer w-fit shadow-xs no-underline"
+          style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;"
+        >
+          <span>ОБРАТИ КАВУ</span>
+          <svg class="w-4 h-4 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7"></path>
+            <path d="M10 7h7v7"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Right Key Metrics -->
+      <div class="flex flex-col gap-3 min-w-[170px] text-right">
+        <div>
+          <div class="text-2xl text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif; font-weight: normal;">100%</div>
+          <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 13px;">СПЕШЕЛТІ АРАБІКА</div>
+        </div>
+        <div class="w-full h-[1px] bg-[#8A4B29]/20 my-1"></div>
+        <div>
+          <div class="text-2xl text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif; font-weight: normal;">4.9★</div>
+          <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 13px;">ВІДГУКИ ГОСТЕЙ</div>
+        </div>
+        <div class="w-full h-[1px] bg-[#8A4B29]/20 my-1"></div>
+        <div>
+          <div class="text-2xl text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif; font-weight: normal;">15K+</div>
+          <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 13px;">ЧАШОК НА МІСЯЦЬ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Hero -->
+  <div class="flex md:hidden flex-col gap-4 px-4 pt-2 pb-6 w-full z-10">
+    <div class="flex flex-col items-center justify-center text-center">
+      <h1
+        class="tracking-wider select-none text-center"
+        style="color: #D9C5B2; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(34px, 11vw, 52px); line-height: 1; margin: 0px;"
+      >
+        {headlineTop}
+      </h1>
+      <h2
+        class="tracking-wider select-none text-center -mt-1"
+        style="color: rgba(217, 197, 178, 0.55); font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(34px, 11vw, 52px); line-height: 1; margin: 0px;"
+      >
+        {headlineBottom}
+      </h2>
+    </div>
+
+    <div class="flex flex-col gap-3 items-center text-center w-full">
+      <div class="bg-[#EFE6DC] p-3.5 rounded-xl border border-[#8A4B29]/15 shadow-2xs w-full max-w-sm">
+        <p class="text-[#3E271D] leading-snug text-center" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 14px; font-weight: 400;">
+          {description}
+        </p>
+      </div>
+      <a
+        href="#products"
+        class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full border border-[#8A4B29]/40 text-[#8A4B29] bg-[#EFE6DC] hover:bg-[#8A4B29] hover:text-white transition-all cursor-pointer w-fit shadow-xs no-underline"
+        style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;"
+      >
+        <span>ОБРАТИ КАВУ</span>
+        <svg class="w-4 h-4 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17L17 7"></path>
+          <path d="M10 7h7v7"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Bucket Graphic sitting tightly above the stats card -->
+    <div class="w-full flex justify-center pt-2 pb-0 -mb-5 z-10">
+      <img
+        alt="Kava and Go Coffee Showcase"
+        class="w-full max-w-[300px] sm:max-w-[380px] max-h-[320px] object-contain drop-shadow-xl"
+        src={imageSrc}
+      />
+    </div>
+
+    <!-- Mobile Stats Box -->
+    <div class="flex flex-row justify-around items-center gap-2 w-full bg-[#EFE6DC] p-3 rounded-xl border border-[#8A4B29]/15 shadow-2xs text-center relative z-20">
+      <div>
+        <div class="text-lg text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif;">100%</div>
+        <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 11px;">АРАБІКА</div>
+      </div>
+      <div class="w-[1px] h-7 bg-[#8A4B29]/20"></div>
+      <div>
+        <div class="text-lg text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif;">4.9★</div>
+        <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 11px;">РЕЙТИНГ</div>
+      </div>
+      <div class="w-[1px] h-7 bg-[#8A4B29]/20"></div>
+      <div>
+        <div class="text-lg text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif;">15K+</div>
+        <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 11px;">ЧАШОК/МІСЯЦЬ</div>
+      </div>
+    </div>
+  </div>
+</div>

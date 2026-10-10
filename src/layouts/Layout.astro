@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Kava & Go — Справжня крафтова кава з собою та свіже зерно",
+  description = "Kava & Go: 100% Specialty Арабіка свіжого обсмажування. Смачна кава з собою, добірні дріп-пакети та кавове зерно."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="uk" data-scroll-behavior="smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Preload Fonts -->
+    <link rel="preload" href="/fonts/83afe278b6a6bb3c-sp0q-301v4kxxnr.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Google Fonts including Merriweather -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Fuzzy+Bubbles:wght@400;700&family=Rammetto+One&family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet" />
+
+    <!-- Original Compiled CSS for baseline utilities -->
+    <link rel="stylesheet" href="/css/0nn4nde3f76s.css" />
+    <link rel="stylesheet" href="/css/0rn43j5dzccd.css" />
+  </head>
+  <body class="bg-[#F7F2EB] text-[#1E140F] selection:bg-[#8A4B29] selection:text-white">
+    <slot />
+
+    <!-- Interactive Logic Script -->
+    <script src="/js/main.js" defer></script>
+  </body>
+</html>

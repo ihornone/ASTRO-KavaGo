@@ -1,0 +1,127 @@
+---
+interface Props {
+  brandName?: string;
+}
+
+const { brandName = "Kava & Go" } = Astro.props;
+
+const exploreLinks = [
+  { label: "Specialty Зерно", href: "#products" },
+  { label: "Дріп-пакети", href: "#products" },
+  { label: "Стандарти якості", href: "#ingredients" },
+  { label: "Про нас", href: "#about" },
+];
+
+const helpLinks = [
+  { label: "Часті питання (FAQ)", href: "#faq" },
+  { label: "Доставка та оплата", href: "#" },
+  { label: "Локації точок видачі", href: "#" },
+  { label: "B2B та опт", href: "#" },
+];
+---
+
+<footer id="shop" class="w-full bg-[#1A110B] text-[#F7F2EB] pt-12 sm:pt-16 md:pt-24 pb-8 px-5 sm:px-8 md:px-12 select-none overflow-hidden flex flex-col items-center">
+  <div class="w-full max-w-[1280px] flex flex-col gap-10 md:gap-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <!-- Newsletter Card -->
+      <div class="lg:col-span-6 bg-[#2B1B12] rounded-[24px] p-6 sm:p-8 md:p-10 flex flex-col gap-5 sm:gap-6 border border-[#8A4B29]/20 shadow-xl">
+        <h3 style="color: #F7F2EB; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(22px, 3.8vw, 38px); line-height: 1.15;">
+          ОТРИМУЙ ЗНИЖКИ ТА КАВОВІ ДРОПИ!
+        </h3>
+        <p style="color: #D4C3B4; font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: clamp(14px, 3.2vw, 17px); line-height: 1.5;">
+          Підпишись на розсилку Kava & Go: першими дізнавайся про свіжі партії спешелті зерна, сезонні напої та отримай -15% на перше замовлення.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-3 w-full" onsubmit="event.preventDefault();">
+          <input
+            placeholder="Введіть ваш email..."
+            required
+            class="w-full bg-[#F7F2EB] text-[#1A110B] px-4 sm:px-5 py-3.5 sm:py-4 rounded-[12px] outline-none placeholder:text-stone-500 text-sm sm:text-base font-medium"
+            type="email"
+          />
+          <button
+            type="submit"
+            class="active:scale-95 px-7 py-3.5 sm:py-4 rounded-[12px] flex items-center justify-center gap-2 cursor-pointer transition-transform duration-200 shrink-0 font-normal uppercase tracking-wider text-sm sm:text-base"
+            style="background-color: #8A4B29; color: #F7F2EB; font-family: 'Rammetto One', cursive, sans-serif; border: none;"
+          >
+            ПРИЄДНАТИСЯ
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Links Grid -->
+      <div class="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 pt-2">
+        <!-- МЕНЮ ТА ЗЕРНО -->
+        <div class="flex flex-col gap-3 sm:gap-4">
+          <h4 style="color: #C68B59; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(15px, 3.2vw, 19px);">
+            КАВА ТА МЕНЮ
+          </h4>
+          <ul class="flex flex-col gap-2 font-medium text-[#D4C3B4] text-base sm:text-lg list-none p-0 m-0">
+            {exploreLinks.map((item) => (
+              <li>
+                <a href={item.href} class="hover:text-[#F7F2EB] cursor-pointer transition-colors no-underline text-inherit py-1 block">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- ДОВІДКА -->
+        <div class="flex flex-col gap-3 sm:gap-4">
+          <h4 style="color: #C68B59; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(15px, 3.2vw, 19px);">
+            ДОВІДКА
+          </h4>
+          <ul class="flex flex-col gap-2 font-medium text-[#D4C3B4] text-base sm:text-lg list-none p-0 m-0">
+            {helpLinks.map((item) => (
+              <li>
+                <a href={item.href} class="hover:text-[#F7F2EB] cursor-pointer transition-colors no-underline text-inherit py-1 block">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- МЕРЕЖІ -->
+        <div class="flex flex-col gap-3 sm:gap-4 col-span-2 sm:col-span-1">
+          <h4 style="color: #C68B59; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(15px, 3.2vw, 19px);">
+            МЕРЕЖІ
+          </h4>
+          <div class="flex items-center gap-3">
+            <a href="#" aria-label="Instagram" class="w-11 h-11 bg-[#2B1B12] hover:bg-[#8A4B29] text-[#F7F2EB] rounded-full flex items-center justify-center transition-colors no-underline border border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" aria-label="Telegram" class="w-11 h-11 bg-[#2B1B12] hover:bg-[#8A4B29] text-[#F7F2EB] rounded-full flex items-center justify-center transition-colors no-underline border border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send">
+                <path d="m22 2-7 20-4-9-9-4Z"></path>
+                <path d="M22 2 11 13"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="w-11 h-11 bg-[#2B1B12] hover:bg-[#8A4B29] text-[#F7F2EB] rounded-full flex items-center justify-center transition-colors no-underline border border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright and Disclaimer -->
+    <div class="border-t border-[#2B1B12] pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#D4C3B4]/60 text-center sm:text-left">
+      <p>© {new Date().getFullYear()} {brandName}. Справжня кава з собою. Всі права захищені.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-white transition-colors no-underline text-inherit">Політика конфіденційності</a>
+        <a href="#" class="hover:text-white transition-colors no-underline text-inherit">Умови користування</a>
+      </div>
+    </div>
+  </div>
+</footer>

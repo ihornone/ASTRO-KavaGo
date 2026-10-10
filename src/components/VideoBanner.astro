@@ -1,0 +1,107 @@
+---
+interface Metric {
+  amount: string;
+  name: string;
+  bgColor: string;
+  desktopClass: string;
+  mobileBg: string;
+}
+
+const metrics: Metric[] = [
+  {
+    amount: "18.5 г",
+    name: "ДОЗУВАННЯ ЗЕРНА",
+    bgColor: "#3B2418",
+    desktopClass: "top-[12%] left-[6%] xl:left-[8%]",
+    mobileBg: "#3B2418",
+  },
+  {
+    amount: "93.5 °C",
+    name: "ТЕМПЕРАТУРА ЗАВАРЮВАННЯ",
+    bgColor: "#C68B59",
+    desktopClass: "top-[16%] right-[12%] xl:right-[15%]",
+    mobileBg: "#C68B59",
+  },
+  {
+    amount: "1:15",
+    name: "ЗОЛОТА ПРОПОРЦІЯ",
+    bgColor: "#8A4B29",
+    desktopClass: "top-[38%] left-[22%] xl:left-[24%]",
+    mobileBg: "#8A4B29",
+  },
+  {
+    amount: "100%",
+    name: "СПЕШЕЛТІ АРАБІКА",
+    bgColor: "#251710",
+    desktopClass: "top-[52%] right-[8%] xl:right-[10%]",
+    mobileBg: "#251710",
+  },
+  {
+    amount: "28 сек",
+    name: "ЧАС ЕКСТРАКЦІЇ",
+    bgColor: "#A8653A",
+    desktopClass: "bottom-[14%] left-[10%] xl:left-[12%]",
+    mobileBg: "#A8653A",
+  },
+  {
+    amount: "0%",
+    name: "ШТУЧНИХ ДОМІШОК",
+    bgColor: "#5C3826",
+    desktopClass: "bottom-[8%] right-[18%] xl:right-[20%]",
+    mobileBg: "#5C3826",
+  },
+];
+---
+
+<section id="ingredients" class="relative w-full min-h-[480px] sm:min-h-[640px] lg:min-h-[850px] bg-[#F7F2EB] overflow-hidden flex items-center justify-center px-4 sm:px-8 lg:px-16 py-8 sm:py-12 md:py-20">
+  <!-- Background Video -->
+  <div class="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center">
+    <video
+      autoplay
+      loop
+      playsinline
+      muted
+      class="w-full h-full object-cover pointer-events-none"
+    >
+      <source src="/videos/middle-popcorn-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 min-h-[460px] sm:min-h-[600px] lg:min-h-[750px] flex flex-col justify-between">
+    <!-- Desktop Floating Metric Pills -->
+    <div class="hidden lg:block w-full h-full absolute inset-0 pointer-events-none">
+      {metrics.map((item) => (
+        <div
+          class={`absolute ${item.desktopClass} text-white px-7 py-5 rounded-2xl shadow-xl pointer-events-auto transition-transform hover:scale-105 duration-300 border border-white/10`}
+          style={`background-color: ${item.bgColor}; border-radius: 16px;`}
+        >
+          <div class="text-3xl xl:text-4xl leading-tight font-normal mb-1" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            {item.amount}
+          </div>
+          <div class="text-sm xl:text-base tracking-wider uppercase font-bold text-white/95" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            {item.name}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile Metrics Grid -->
+    <div class="grid grid-cols-2 gap-2.5 sm:gap-4 lg:hidden py-4 sm:py-8 z-20 pointer-events-auto mt-auto mb-4">
+      {metrics.map((item) => (
+        <div
+          class="text-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg transition-transform active:scale-95 border border-white/10 backdrop-blur-xs"
+          style={`background-color: ${item.mobileBg};`}
+        >
+          <div class="text-lg sm:text-2xl font-normal leading-tight mb-0.5" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            {item.amount}
+          </div>
+          <div class="text-[10px] sm:text-xs uppercase font-bold tracking-wider leading-tight" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            {item.name}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

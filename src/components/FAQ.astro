@@ -1,0 +1,92 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: "Яке зерно ви використовуєте в Kava & Go?",
+    answer: "Ми варимо та пакуємо виключно 100% Specialty Арабіку свіжого обсмажування. Наше зерно походить з найкращих кавових кооперативів Ефіопії, Колумбії, Бразилії та Гондурасу з Q-Score оцінкою 84+.",
+  },
+  {
+    question: "Чи можна змолоти каву під мій спосіб приготування?",
+    answer: "Так, обов'язково! Під час замовлення ви можете обрати помел: під еспресо-машину, турку (джезву), гейзерну кавоварку (моку), фільтр, дріп-пакети або френч-прес. Помел здійснюється безпосередньо перед відправкою.",
+  },
+  {
+    question: "Що таке дріп-пакети і як їх заварювати?",
+    answer: "Дріп-пакет — це готова порція свіжозмеленої спешелті кави у компактному фільтрі. Просто відкрийте пакетик, закріпіть його на чашці і повільно пролийте 180-200 мл гарячої води (92–95°C). Ідеальна фільтр-кава готова за 2 хвилини будь-де!",
+  },
+  {
+    question: "Чи є у вас опції без лактози та на рослинному молоці?",
+    answer: "Так! У наших кавових локаціях ми з радістю приготуємо ваш улюблений напій на безлактозному або рослинному молоці: вівсяному, кокосовому, банановому чи мигдалевому від провідних бариста-брендів.",
+  },
+  {
+    question: "Як працює доставка та чи є самовивіз?",
+    answer: "Ви можете оформити швидке передзамовлення через наш сайт і забрати готовий напій чи свіжообсмажене зерно у найближчій точці Kava & Go без черги. Також доставляємо каву по всій Україні Новою Поштою за 1-2 дні.",
+  },
+  {
+    question: "Скільки зберігається свіжість вашого зерна?",
+    answer: "Після обсмажування кава найкраще розкриває свій смаковий профіль у період від 7 днів до 2 місяців. Наші пачки оснащені дегазаційним клапаном та зіп-замком, що надійно захищає зерно від контакту з киснем.",
+  },
+];
+---
+
+<section id="faq" class="w-full bg-[#F7F2EB] py-12 sm:py-16 md:py-24 px-4 sm:px-8 lg:px-12 flex flex-col items-center overflow-hidden">
+  <div class="w-full max-w-[1100px] flex flex-col items-center gap-6 sm:gap-8 md:gap-12">
+    <!-- FAQ Heading -->
+    <h2
+      class="uppercase text-center select-none"
+      style="color: #D9C3B0; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(50px, 14vw, 226px); font-style: normal; font-weight: 400; line-height: 1;"
+    >
+      FAQ
+    </h2>
+
+    <!-- FAQ Accordion List -->
+    <div class="w-full flex flex-col gap-3 sm:gap-4 md:gap-5">
+      {faqs.map((faq, index) => (
+        <div
+          class="faq-card w-full bg-[#EFE6DC] rounded-xl sm:rounded-2xl shadow-xs cursor-pointer transition-all duration-300 hover:shadow-md border border-[#8A4B29]/15 overflow-hidden flex flex-col px-5 py-5 sm:px-8 sm:py-7 md:px-10 md:py-8"
+          data-faq-index={index}
+        >
+          <div class="w-full flex items-center justify-between gap-3 sm:gap-4">
+            <h3
+              class="text-left"
+              style="color: #2B1810; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(16px, 3.8vw, 32px); font-style: normal; font-weight: 400; line-height: 1.3;"
+            >
+              {faq.question}
+            </h3>
+            <div class="faq-icon transform transition-transform duration-300 text-[#8A4B29] shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="faq-answer hidden pt-3 sm:pt-4 text-[#4A2E1E] text-sm sm:text-base md:text-lg leading-relaxed border-t border-[#8A4B29]/15 mt-3 sm:mt-4" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Interactive accordion logic
+  document.querySelectorAll('.faq-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const answer = card.querySelector('.faq-answer');
+      const icon = card.querySelector('.faq-icon');
+      if (!answer || !icon) return;
+
+      const isHidden = answer.classList.contains('hidden');
+      if (isHidden) {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        answer.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    });
+  });
+</script>

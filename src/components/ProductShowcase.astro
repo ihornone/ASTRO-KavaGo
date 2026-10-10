@@ -1,0 +1,210 @@
+---
+interface Product {
+  id: string;
+  name: string;
+  tagline: string;
+  image: string;
+  colorTheme: string;
+  accentColor: string;
+  badgeBg: string;
+  badgeBorder: string;
+  roast: string;
+  composition: string;
+  feature: string;
+  weight: string;
+  orderReversed?: boolean;
+}
+
+const products: Product[] = [
+  {
+    id: "kava-and-go-classic",
+    name: "KAVA & GO CLASSIC",
+    tagline: "GOOD COFFEE, BETTER DAYS • 100% АРАБІКА • ЗНИЖКА 15%",
+    image: "/images/1st-image.png",
+    colorTheme: "#2C1810",
+    accentColor: "#8A4B29",
+    badgeBg: "#F7F2EB",
+    badgeBorder: "#8A4B29",
+    roast: "Medium",
+    composition: "100%",
+    feature: "Без домішок",
+    weight: "250 г",
+    orderReversed: false,
+  },
+  {
+    id: "kava-and-go-hazelnut",
+    name: "KAVA & GO HAZELNUT",
+    tagline: "MORE FLAVOR, MORE MOMENTS • НАТУРАЛЬНИЙ ФУНДУК • ЗНИЖКА 15%",
+    image: "/images/2nd-image.png",
+    colorTheme: "#33412E",
+    accentColor: "#4B6144",
+    badgeBg: "#F7F2EB",
+    badgeBorder: "#4B6144",
+    roast: "Medium",
+    composition: "Фундук",
+    feature: "Без барвників",
+    weight: "250 г",
+    orderReversed: true,
+  },
+];
+---
+
+<section id="products" class="w-full bg-[#F7F2EB] overflow-hidden">
+  <div class="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+    <!-- Product 1: Kava & Go Classic -->
+    <!-- Image Card -->
+    <div class="bg-[#2C1810] min-h-[380px] sm:min-h-[480px] lg:min-h-[640px] flex items-center justify-center p-6 sm:p-8 lg:p-12 overflow-hidden relative group cursor-pointer">
+      <img
+        alt="Кава в зернах Kava & Go Classic 100% Arabica"
+        class="max-h-[360px] sm:max-h-[460px] lg:max-h-[580px] w-auto object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+        src="/images/1st-image.png"
+      />
+      <!-- Hover Overlay on Desktop -->
+      <div class="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <button
+          class="pointer-events-auto px-8 py-4 rounded-full shadow-2xl flex items-center gap-2.5 transition-all duration-300 font-normal uppercase tracking-wider transform scale-90 group-hover:scale-100 hover:scale-105 active:scale-95 cursor-pointer relative overflow-visible"
+          style="background-color: #8A4B29; color: #F7F2EB; font-family: 'Rammetto One', cursive, sans-serif; font-size: 16px; border: none;"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag text-white">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          ЗАМОВИТИ ЗЕРНО
+        </button>
+      </div>
+    </div>
+
+    <!-- Details Card -->
+    <div class="bg-[#EDE3D5] min-h-[400px] lg:min-h-[640px] flex flex-col justify-center p-6 sm:p-10 lg:p-16 overflow-hidden">
+      <div class="flex flex-col gap-6 sm:gap-8">
+        <div style="color: #8A4B29; font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: clamp(14px, 3.5vw, 17px); font-style: normal; font-weight: 700; line-height: normal; text-transform: uppercase;">
+          GOOD COFFEE, BETTER DAYS • 100% АРАБІКА • ЗНИЖКА 15%
+        </div>
+        <h2
+          class="max-w-[639px] uppercase tracking-normal"
+          style="width: 100%; max-width: 639px; color: #8A4B29; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(30px, 5.2vw, 68px); font-style: normal; font-weight: 400; line-height: 1.05;"
+        >
+          KAVA &amp; GO CLASSIC
+        </h2>
+        
+        <p class="text-[#4A2E1E] text-base sm:text-lg leading-relaxed max-w-[560px]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+          Rich aroma & smooth taste. Добірні зерна 100% арабіки дбайливого середнього обсмажування. Глибокий оксамитовий смак з нотами шоколаду та ніжним карамельним посмаком.
+        </p>
+
+        <!-- Product Specs matching the exact package badges -->
+        <div class="w-full flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5">
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#8A4B29]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="font-normal text-sm sm:text-base leading-tight text-[#2B1810]" style="font-family: 'Rammetto One', cursive, sans-serif;">Medium</span>
+            <span class="text-[9px] sm:text-[10px] font-bold text-[#8A4B29]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Обсмажка</span>
+          </div>
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#8A4B29]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="font-normal text-base sm:text-lg leading-tight text-[#2B1810]" style="font-family: 'Rammetto One', cursive, sans-serif;">100%</span>
+            <span class="text-[9px] sm:text-[10px] font-bold text-[#8A4B29]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Арабіка</span>
+          </div>
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#8A4B29]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="text-[10px] sm:text-[11px] font-bold text-[#2B1810] leading-tight" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Без<br />домішок</span>
+            <span class="text-[8px] sm:text-[9px] font-bold text-[#8A4B29]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Склад</span>
+          </div>
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#8A4B29]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="font-normal text-base sm:text-lg leading-tight text-[#2B1810]" style="font-family: 'Rammetto One', cursive, sans-serif;">250г</span>
+            <span class="text-[9px] sm:text-[10px] font-bold text-[#8A4B29]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Вага</span>
+          </div>
+        </div>
+
+        <!-- Mobile-Only BUY NOW Button -->
+        <div class="flex md:hidden pt-2">
+          <button
+            class="w-full active:scale-95 py-3.5 px-6 rounded-xl shadow-md flex items-center justify-center gap-2.5 font-normal uppercase tracking-wider text-sm cursor-pointer"
+            style="background-color: #8A4B29; color: #F7F2EB; font-family: 'Rammetto One', cursive, sans-serif; border: none;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+              <path d="M3 6h18"></path>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            ЗАМОВИТИ ЗЕРНО
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2: Kava & Go Hazelnut -->
+    <!-- Details Card (order-2 on mobile, order-1 on desktop) -->
+    <div class="bg-[#EDE3D5] min-h-[400px] lg:min-h-[640px] flex flex-col justify-center p-6 sm:p-10 lg:p-16 overflow-hidden order-2 md:order-1">
+      <div class="flex flex-col gap-6 sm:gap-8">
+        <div style="color: #4B6144; font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: clamp(14px, 3.5vw, 17px); font-style: normal; font-weight: 700; line-height: normal; text-transform: uppercase;">
+          MORE FLAVOR, MORE MOMENTS • НАТУРАЛЬНИЙ ФУНДУК • ЗНИЖКА 15%
+        </div>
+        <h2
+          class="max-w-[639px] uppercase tracking-normal"
+          style="width: 100%; max-width: 639px; color: #4B6144; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(30px, 5.2vw, 68px); font-style: normal; font-weight: 400; line-height: 1.05;"
+        >
+          KAVA &amp; GO HAZELNUT
+        </h2>
+
+        <p class="text-[#33412E] text-base sm:text-lg leading-relaxed max-w-[560px]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+          Natural flavor & smooth, balanced taste. Вишукана арабіка з багатим теплим ароматом смаженого фундука. Ідеальний вибір для неспішного ранку або заряджаючої кава-паузи.
+        </p>
+        
+        <!-- Product Specs matching the exact package badges -->
+        <div class="w-full flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5">
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#4B6144]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="font-normal text-sm sm:text-base leading-tight text-[#1F2E1B]" style="font-family: 'Rammetto One', cursive, sans-serif;">Medium</span>
+            <span class="text-[9px] sm:text-[10px] font-bold text-[#4B6144]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Обсмажка</span>
+          </div>
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#4B6144]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="text-[10px] sm:text-[11px] font-bold text-[#1F2E1B] leading-tight" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Фундук</span>
+            <span class="text-[8px] sm:text-[9px] font-bold text-[#4B6144]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Аромат</span>
+          </div>
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#4B6144]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="text-[10px] sm:text-[11px] font-bold text-[#1F2E1B] leading-tight" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Без<br />барвників</span>
+            <span class="text-[8px] sm:text-[9px] font-bold text-[#4B6144]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Склад</span>
+          </div>
+          <div class="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dashed border-[#4B6144]/40 bg-[#F7F2EB] text-center p-1 shrink-0">
+            <span class="font-normal text-base sm:text-lg leading-tight text-[#1F2E1B]" style="font-family: 'Rammetto One', cursive, sans-serif;">250г</span>
+            <span class="text-[9px] sm:text-[10px] font-bold text-[#4B6144]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">Вага</span>
+          </div>
+        </div>
+
+        <!-- Mobile-Only BUY NOW Button -->
+        <div class="flex md:hidden pt-2">
+          <button
+            class="w-full active:scale-95 py-3.5 px-6 rounded-xl shadow-md flex items-center justify-center gap-2.5 font-normal uppercase tracking-wider text-sm cursor-pointer"
+            style="background-color: #4B6144; color: #F7F2EB; font-family: 'Rammetto One', cursive, sans-serif; border: none;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+              <path d="M3 6h18"></path>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            ЗАМОВИТИ ЗЕРНО
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Card (order-1 on mobile, order-2 on desktop) -->
+    <div class="bg-[#33412E] min-h-[380px] sm:min-h-[480px] lg:min-h-[640px] flex items-center justify-center p-6 sm:p-8 lg:p-12 overflow-hidden order-1 md:order-2 relative group cursor-pointer">
+      <img
+        alt="Кава в зернах Kava & Go Hazelnut 100% Arabica з фундуком"
+        class="max-h-[360px] sm:max-h-[460px] lg:max-h-[580px] w-auto object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+        src="/images/2nd-image.png"
+      />
+      <!-- Hover Overlay on Desktop -->
+      <div class="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <button
+          class="pointer-events-auto px-8 py-4 rounded-full shadow-2xl flex items-center gap-2.5 transition-all duration-300 font-normal uppercase tracking-wider transform scale-90 group-hover:scale-100 hover:scale-105 active:scale-95 cursor-pointer relative overflow-visible"
+          style="background-color: #4B6144; color: #F7F2EB; font-family: 'Rammetto One', cursive, sans-serif; font-size: 16px; border: none;"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag text-white">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          ЗАМОВИТИ ЗЕРНО
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

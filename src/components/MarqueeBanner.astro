@@ -1,0 +1,100 @@
+---
+interface Props {
+  bottomImageSrc?: string;
+  popcornIconSrc?: string;
+}
+
+const {
+  bottomImageSrc = "/images/bottom-image.png",
+  popcornIconSrc = "/images/single-popcorn.png",
+} = Astro.props;
+
+// Row 1: Alternating Coffee Words
+const row1Words = Array.from({ length: 4 }).flatMap(() => [
+  "ESPRESSO",
+  "ARABICA",
+  "KAVA & GO",
+  "FRESH ROAST",
+]);
+
+// Row 2: Alternating Specialty Words
+const row2Words = Array.from({ length: 4 }).flatMap(() => [
+  "COLD BREW",
+  "LATTE",
+  "DRIP BAGS",
+  "SPECIALTY",
+]);
+---
+
+<section class="relative w-full bg-[#F7F2EB] overflow-hidden pt-6 sm:pt-[50px] pb-0 flex flex-col justify-start min-h-[460px] sm:min-h-[650px] md:min-h-[750px] lg:min-h-[900px] select-none">
+  <!-- Marquee Rows Container -->
+  <div class="w-full flex flex-col gap-2 md:gap-4 lg:gap-6 z-0 pt-4 sm:pt-[50px] pb-16 sm:pb-28 md:pb-36 lg:pb-48">
+    <!-- Row 1: Leftward Scrolling -->
+    <div class="w-full overflow-hidden whitespace-nowrap flex">
+      <div class="flex items-center gap-3 sm:gap-6 md:gap-8 lg:gap-12 snozy-marquee-left min-w-max">
+        {row1Words.map((word) => (
+          <>
+            <span
+              class="uppercase tracking-tight inline-block"
+              style="color: #D9C3B0; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(50px, 14vw, 231.592px); line-height: 1; font-weight: 400;"
+            >
+              {word}
+            </span>
+            <img
+              alt="Кава"
+              class="w-8 sm:w-14 md:w-24 lg:w-40 inline-block object-contain"
+              src={popcornIconSrc}
+            />
+          </>
+        ))}
+      </div>
+    </div>
+
+    <!-- Row 2: Rightward Scrolling -->
+    <div class="w-full overflow-hidden whitespace-nowrap flex">
+      <div class="flex items-center gap-3 sm:gap-6 md:gap-8 lg:gap-12 snozy-marquee-right min-w-max">
+        {row2Words.map((word) => (
+          <>
+            <span
+              class="uppercase tracking-tight inline-block"
+              style="color: #D9C3B0; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(50px, 14vw, 231.592px); line-height: 1; font-weight: 400;"
+            >
+              {word}
+            </span>
+            <img
+              alt="Кава"
+              class="w-8 sm:w-14 md:w-24 lg:w-40 inline-block object-contain"
+              src={popcornIconSrc}
+            />
+          </>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Visual Graphic (Image kept intact per user instructions) -->
+  <div class="absolute inset-x-0 bottom-0 z-10 w-full max-w-[1200px] mx-auto flex justify-center pointer-events-none px-4">
+    <img
+      alt="Kava & Go Coffee"
+      class="w-full max-h-[300px] sm:max-h-[480px] md:max-h-[640px] lg:max-h-[850px] object-contain object-bottom drop-shadow-2xl"
+      src={bottomImageSrc}
+    />
+  </div>
+</section>
+
+<style>
+  @keyframes marqueeLeft {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marqueeRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+  .snozy-marquee-left {
+    animation: marqueeLeft 60s linear infinite;
+  }
+  .snozy-marquee-right {
+    animation: marqueeRight 60s linear infinite;
+  }
+</style>
