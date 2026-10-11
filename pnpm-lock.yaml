@@ -24,6 +24,9 @@ importers:
       '@types/node':
         specifier: ^26.6.5
         version: 26.6.5
+      wrangler:
+        specifier: ^4.149.0
+        version: 4.149.0(@types/node@26.6.5)
 
 packages:
 
