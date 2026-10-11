@@ -1,0 +1,375 @@
+---
+/**
+ * Checkout Modal for Kava & Go
+ * Connects directly to PayMock payment gateway
+ */
+---
+
+<div
+  id="checkout-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <div
+    id="modal-card"
+    class="relative w-full max-w-lg bg-[#FAF6F0] rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#8A4B29]/20 transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto"
+  >
+    <!-- Close Button -->
+    <button
+      id="close-modal-btn"
+      class="absolute top-5 right-5 w-10 h-10 rounded-full bg-[#EFE6DC] text-[#2B1810] hover:bg-[#8A4B29] hover:text-white transition-colors flex items-center justify-center cursor-pointer border border-[#8A4B29]/20"
+      aria-label="Закрити"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Header -->
+    <div class="pr-10 mb-6">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8A4B29]/10 text-[#8A4B29] text-xs font-bold uppercase tracking-wider mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+          <line x1="2" x2="22" y1="10" y2="10"></line>
+        </svg>
+        Швидке замовлення та оплата
+      </div>
+      <h3 id="modal-title" class="text-2xl sm:text-3xl font-normal text-[#2B1810]" style="font-family: 'Rammetto One', cursive, sans-serif;">
+        Оформлення
+      </h3>
+    </div>
+
+    <!-- Product Selected Card -->
+    <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#EDE3D5] border border-[#8A4B29]/20 mb-6">
+      <div class="w-20 h-20 bg-[#2C1810] rounded-xl flex items-center justify-center p-2 shrink-0 overflow-hidden shadow-inner" id="modal-prod-img-wrap">
+        <img id="modal-prod-img" src="/images/1st-image.png" alt="Кава" class="max-h-full w-auto object-contain" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <h4 id="modal-prod-name" class="text-base sm:text-lg font-bold text-[#2B1810] truncate" style="font-family: 'Rammetto One', cursive, sans-serif;">
+          KAVA &amp; GO CLASSIC
+        </h4>
+        <p id="modal-prod-sub" class="text-xs sm:text-sm text-[#6E5849] font-medium" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+          250г • 100% Арабіка
+        </p>
+        <div class="flex items-baseline gap-2 mt-1">
+          <span id="modal-prod-price" class="text-lg font-bold text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif;">
+            275 ₴
+          </span>
+          <span id="modal-prod-orig-price" class="text-xs text-[#8A4B29]/60 line-through">
+            320 ₴
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="checkout-form" class="space-y-4">
+      <input type="hidden" id="selected-product-id" name="productId" value="kava-and-go-classic" />
+
+      <!-- Quantity Selector -->
+      <div>
+        <label class="block text-xs font-bold text-[#6E5849] uppercase tracking-wider mb-1.5" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+          Кількість пачок (по 250г)
+        </label>
+        <div class="flex items-center gap-3">
+          <div class="inline-flex items-center rounded-xl bg-[#EDE3D5] p-1 border border-[#8A4B29]/20">
+            <button
+              type="button"
+              id="qty-dec-btn"
+              class="w-9 h-9 rounded-lg bg-white/70 hover:bg-white text-[#2B1810] font-bold text-lg flex items-center justify-center transition cursor-pointer"
+            >
+              −
+            </button>
+            <span id="qty-display" class="w-12 text-center font-bold text-[#2B1810] text-base" style="font-family: 'Rammetto One', cursive, sans-serif;">
+              1
+            </span>
+            <button
+              type="button"
+              id="qty-inc-btn"
+              class="w-9 h-9 rounded-lg bg-white/70 hover:bg-white text-[#2B1810] font-bold text-lg flex items-center justify-center transition cursor-pointer"
+            >
+              +
+            </button>
+          </div>
+          <span class="text-xs text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            (макс. 10 пачок в одному замовленні)
+          </span>
+        </div>
+      </div>
+
+      <!-- Customer Name & Phone -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label for="cust-name" class="block text-xs font-bold text-[#6E5849] uppercase tracking-wider mb-1" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            Ваше ім'я *
+          </label>
+          <input
+            type="text"
+            id="cust-name"
+            name="customerName"
+            required
+            placeholder="Олександр"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#8A4B29]/25 text-[#2B1810] text-sm focus:outline-none focus:ring-2 focus:ring-[#8A4B29]/40 focus:border-[#8A4B29]"
+            style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;"
+          />
+        </div>
+        <div>
+          <label for="cust-phone" class="block text-xs font-bold text-[#6E5849] uppercase tracking-wider mb-1" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+            Телефон *
+          </label>
+          <input
+            type="tel"
+            id="cust-phone"
+            name="customerPhone"
+            required
+            placeholder="+380 67 123 45 67"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#8A4B29]/25 text-[#2B1810] text-sm focus:outline-none focus:ring-2 focus:ring-[#8A4B29]/40 focus:border-[#8A4B29]"
+            style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;"
+          />
+        </div>
+      </div>
+
+      <!-- Customer Email (optional) -->
+      <div>
+        <label for="cust-email" class="block text-xs font-bold text-[#6E5849] uppercase tracking-wider mb-1" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+          Email (для квитанції)
+        </label>
+        <input
+          type="email"
+          id="cust-email"
+          name="customerEmail"
+          placeholder="your@email.com"
+          class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#8A4B29]/25 text-[#2B1810] text-sm focus:outline-none focus:ring-2 focus:ring-[#8A4B29]/40 focus:border-[#8A4B29]"
+          style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;"
+        />
+      </div>
+
+      <!-- Comment / Grind Option -->
+      <div>
+        <label for="cust-comment" class="block text-xs font-bold text-[#6E5849] uppercase tracking-wider mb-1" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+          Помел або примітка
+        </label>
+        <select
+          id="cust-comment"
+          name="comment"
+          class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#8A4B29]/25 text-[#2B1810] text-sm focus:outline-none focus:ring-2 focus:ring-[#8A4B29]/40 focus:border-[#8A4B29]"
+          style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;"
+        >
+          <option value="У зернах (без помелу)">В зернах (ціле зерно)</option>
+          <option value="Помел під еспресо">Помел під еспресо / ріжкову кавоварку</option>
+          <option value="Помел під турку">Дрібний помел під турку (джезву)</option>
+          <option value="Помел під чашку / фільтр">Помел під фільтр / запарювання в чашці</option>
+          <option value="Помел під гейзерну кавоварку">Помел під гейзер (мока)</option>
+        </select>
+      </div>
+
+      <!-- Total Price Bar -->
+      <div class="pt-3 border-t border-[#8A4B29]/15 flex items-center justify-between">
+        <span class="text-sm font-bold text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
+          Разом до сплати:
+        </span>
+        <div class="text-right">
+          <span id="modal-total-sum" class="text-2xl font-bold text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif;">
+            275 ₴
+          </span>
+          <span class="block text-[11px] text-[#6E5849]">
+            Без комісії карткою або Apple Pay
+          </span>
+        </div>
+      </div>
+
+      <!-- Error Message Box -->
+      <div id="checkout-error" class="hidden p-3 rounded-xl bg-red-100 border border-red-300 text-red-800 text-xs font-medium"></div>
+
+      <!-- Submit / Pay Button -->
+      <button
+        type="submit"
+        id="pay-submit-btn"
+        class="w-full py-4 px-6 rounded-2xl bg-[#8A4B29] hover:bg-[#6f3b20] text-white font-bold uppercase tracking-wider text-base shadow-lg transition-all duration-200 flex items-center justify-center gap-3 cursor-pointer active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed"
+        style="font-family: 'Rammetto One', cursive, sans-serif;"
+      >
+        <span id="pay-btn-spinner" class="hidden animate-spin">
+          <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="pay-btn-icon">
+          <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+          <line x1="2" x2="22" y1="10" y2="10"></line>
+        </svg>
+        <span id="pay-btn-text">ОПЛАТИТИ ЧЕРЕЗ PAYMOCK</span>
+      </button>
+
+      <!-- PayMock Trust Badge -->
+      <div class="flex items-center justify-center gap-2 pt-1 text-[11px] text-[#6E5849]/80 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>Безпечна тестова оплата через <strong>PayMock Gateway</strong> (Monobank API format)</span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  import { PRODUCTS } from '../lib/paymock';
+
+  let currentProductId = 'kava-and-go-classic';
+  let currentQty = 1;
+
+  const modal = document.getElementById('checkout-modal');
+  const modalCard = document.getElementById('modal-card');
+  const closeBtn = document.getElementById('close-modal-btn');
+  const form = document.getElementById('checkout-form') as HTMLFormElement | null;
+  const errorBox = document.getElementById('checkout-error');
+  const submitBtn = document.getElementById('pay-submit-btn') as HTMLButtonElement | null;
+  const btnSpinner = document.getElementById('pay-btn-spinner');
+  const btnText = document.getElementById('pay-btn-text');
+
+  const prodImgWrap = document.getElementById('modal-prod-img-wrap');
+  const prodImg = document.getElementById('modal-prod-img') as HTMLImageElement | null;
+  const prodName = document.getElementById('modal-prod-name');
+  const prodSub = document.getElementById('modal-prod-sub');
+  const prodPrice = document.getElementById('modal-prod-price');
+  const prodOrigPrice = document.getElementById('modal-prod-orig-price');
+  const totalSum = document.getElementById('modal-total-sum');
+  const qtyDisplay = document.getElementById('qty-display');
+  const selectedProductInput = document.getElementById('selected-product-id') as HTMLInputElement | null;
+
+  function updateModalProductView() {
+    const p = PRODUCTS[currentProductId] || PRODUCTS['kava-and-go-classic'];
+    if (!p) return;
+
+    if (prodImg) prodImg.src = p.image;
+    if (prodName) prodName.textContent = p.name;
+    if (prodSub) prodSub.textContent = `${p.weight} • ${p.blend}`;
+    if (prodPrice) prodPrice.textContent = `${p.price} ₴`;
+    if (prodOrigPrice) prodOrigPrice.textContent = `${p.originalPrice || ''} ₴`;
+    if (selectedProductInput) selectedProductInput.value = p.id;
+    if (qtyDisplay) qtyDisplay.textContent = currentQty.toString();
+
+    const sum = p.price * currentQty;
+    if (totalSum) totalSum.textContent = `${sum} ₴`;
+
+    if (prodImgWrap) {
+      prodImgWrap.style.backgroundColor = p.id === 'kava-and-go-hazelnut' ? '#33412E' : '#2C1810';
+    }
+  }
+
+  function openModal(productId?: string) {
+    if (productId && PRODUCTS[productId]) {
+      currentProductId = productId;
+    }
+    currentQty = 1;
+    updateModalProductView();
+
+    if (errorBox) {
+      errorBox.classList.add('hidden');
+      errorBox.textContent = '';
+    }
+
+    if (modal && modalCard) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modalCard.classList.remove('scale-95');
+      modalCard.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeModal() {
+    if (modal && modalCard) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modalCard.classList.remove('scale-100');
+      modalCard.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Bind close
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('pointer-events-none')) {
+      closeModal();
+    }
+  });
+
+  // Quantity +/-
+  document.getElementById('qty-dec-btn')?.addEventListener('click', () => {
+    if (currentQty > 1) {
+      currentQty--;
+      updateModalProductView();
+    }
+  });
+
+  document.getElementById('qty-inc-btn')?.addEventListener('click', () => {
+    if (currentQty < 10) {
+      currentQty++;
+      updateModalProductView();
+    }
+  });
+
+  // Global trigger listener for any element with data-buy-product
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement)?.closest('[data-buy-product]');
+    if (target) {
+      e.preventDefault();
+      const pId = target.getAttribute('data-buy-product');
+      openModal(pId || undefined);
+    }
+  });
+
+  // Handle Checkout Submit
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (submitBtn) submitBtn.disabled = true;
+    btnSpinner?.classList.remove('hidden');
+    if (btnText) btnText.textContent = 'ГЕНЕРАЦІЯ РАХУНКУ...';
+    if (errorBox) errorBox.classList.add('hidden');
+
+    const formData = new FormData(form);
+    const payload = {
+      productId: currentProductId,
+      quantity: currentQty,
+      customerName: formData.get('customerName'),
+      customerPhone: formData.get('customerPhone'),
+      customerEmail: formData.get('customerEmail'),
+      comment: formData.get('comment')
+    };
+
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Помилка створення рахунку');
+      }
+
+      if (btnText) btnText.textContent = 'ПЕРЕХІД ДО ОПЛАТИ...';
+
+      // Redirect user directly to the PayMock payment checkout page
+      window.location.href = data.pageUrl;
+    } catch (err: any) {
+      console.error(err);
+      if (errorBox) {
+        errorBox.textContent = err.message || 'Сталася помилка. Спробуйте ще раз.';
+        errorBox.classList.remove('hidden');
+      }
+      if (submitBtn) submitBtn.disabled = false;
+      btnSpinner?.classList.add('hidden');
+      if (btnText) btnText.textContent = 'ОПЛАТИТИ ЧЕРЕЗ PAYMOCK';
+    }
+  });
+</script>
