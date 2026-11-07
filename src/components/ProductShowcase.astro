@@ -1,52 +1,8 @@
 ---
-interface Product {
-  id: string;
-  name: string;
-  tagline: string;
-  image: string;
-  colorTheme: string;
-  accentColor: string;
-  badgeBg: string;
-  badgeBorder: string;
-  roast: string;
-  composition: string;
-  feature: string;
-  weight: string;
-  orderReversed?: boolean;
-}
+import { PRODUCTS } from '../lib/products';
 
-const products: Product[] = [
-  {
-    id: "kava-and-go-classic",
-    name: "KAVA & GO CLASSIC",
-    tagline: "GOOD COFFEE, BETTER DAYS • 100% АРАБІКА • ЗНИЖКА 15%",
-    image: "/images/1st-image.png",
-    colorTheme: "#2C1810",
-    accentColor: "#8A4B29",
-    badgeBg: "#F7F2EB",
-    badgeBorder: "#8A4B29",
-    roast: "Medium",
-    composition: "100%",
-    feature: "Без домішок",
-    weight: "250 г",
-    orderReversed: false,
-  },
-  {
-    id: "kava-and-go-hazelnut",
-    name: "KAVA & GO HAZELNUT",
-    tagline: "MORE FLAVOR, MORE MOMENTS • НАТУРАЛЬНИЙ ФУНДУК • ЗНИЖКА 15%",
-    image: "/images/2nd-image.png",
-    colorTheme: "#33412E",
-    accentColor: "#4B6144",
-    badgeBg: "#F7F2EB",
-    badgeBorder: "#4B6144",
-    roast: "Medium",
-    composition: "Фундук",
-    feature: "Без барвників",
-    weight: "250 г",
-    orderReversed: true,
-  },
-];
+const classic = PRODUCTS['kava-and-go-classic'];
+const hazelnut = PRODUCTS['kava-and-go-hazelnut'];
 ---
 
 <section id="products" class="w-full bg-[#F7F2EB] overflow-hidden">
@@ -80,17 +36,17 @@ const products: Product[] = [
     <div class="bg-[#EDE3D5] min-h-[400px] lg:min-h-[640px] flex flex-col justify-center p-6 sm:p-10 lg:p-16 overflow-hidden">
       <div class="flex flex-col gap-6 sm:gap-8">
         <div style="color: #8A4B29; font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: clamp(14px, 3.5vw, 17px); font-style: normal; font-weight: 700; line-height: normal; text-transform: uppercase;">
-          GOOD COFFEE, BETTER DAYS • 100% АРАБІКА • ЗНИЖКА 15%
+          {classic.tagline}
         </div>
         <h2
           class="max-w-[639px] uppercase tracking-normal"
           style="width: 100%; max-width: 639px; color: #8A4B29; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(30px, 5.2vw, 68px); font-style: normal; font-weight: 400; line-height: 1.05;"
         >
-          KAVA &amp; GO CLASSIC
+          {classic.name}
         </h2>
         
         <p class="text-[#4A2E1E] text-base sm:text-lg leading-relaxed max-w-[560px]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
-          Rich aroma & smooth taste. Добірні зерна 100% арабіки дбайливого середнього обсмажування. Глибокий оксамитовий смак з нотами шоколаду та ніжним карамельним посмаком.
+          {classic.description}
         </p>
 
         <!-- Product Specs matching the exact package badges -->
@@ -136,17 +92,17 @@ const products: Product[] = [
     <div class="bg-[#EDE3D5] min-h-[400px] lg:min-h-[640px] flex flex-col justify-center p-6 sm:p-10 lg:p-16 overflow-hidden order-2 md:order-1">
       <div class="flex flex-col gap-6 sm:gap-8">
         <div style="color: #4B6144; font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: clamp(14px, 3.5vw, 17px); font-style: normal; font-weight: 700; line-height: normal; text-transform: uppercase;">
-          MORE FLAVOR, MORE MOMENTS • НАТУРАЛЬНИЙ ФУНДУК • ЗНИЖКА 15%
+          {hazelnut.tagline}
         </div>
         <h2
           class="max-w-[639px] uppercase tracking-normal"
           style="width: 100%; max-width: 639px; color: #4B6144; font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(30px, 5.2vw, 68px); font-style: normal; font-weight: 400; line-height: 1.05;"
         >
-          KAVA &amp; GO HAZELNUT
+          {hazelnut.name}
         </h2>
 
         <p class="text-[#33412E] text-base sm:text-lg leading-relaxed max-w-[560px]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif;">
-          Natural flavor & smooth, balanced taste. Вишукана арабіка з багатим теплим ароматом смаженого фундука. Ідеальний вибір для неспішного ранку або заряджаючої кава-паузи.
+          {hazelnut.description}
         </p>
         
         <!-- Product Specs matching the exact package badges -->

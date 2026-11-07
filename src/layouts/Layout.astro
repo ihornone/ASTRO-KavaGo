@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "Kava & Go — Справжня крафтова кава з собою та свіже зерно",
-  description = "Kava & Go: 100% Specialty Арабіка свіжого обсмажування. Смачна кава з собою, добірні дріп-пакети та кавове зерно."
+  title = "Кава в зернах та дріп-пакети — Kava & Go | Свіже обсмажування",
+  description = "100% спешелті-арабіка Q 84+ свіжого обсмажування. Зерно на вибір помелу, дріп-пакети та кава з собою. Доставка Новою Поштою 1-2 дні, знижка 15% на перше замовлення."
 } = Astro.props;
 ---
 
@@ -18,10 +18,22 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kava & Go" />
+    <meta property="og:locale" content="uk_UA" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/header-images.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/images/header-images.png" />
+
     <!-- Preload Fonts -->
     <link rel="preload" href="/fonts/83afe278b6a6bb3c-sp0q-301v4kxxnr.woff2" as="font" type="font/woff2" crossorigin />
     

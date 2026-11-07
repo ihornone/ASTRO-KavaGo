@@ -9,7 +9,7 @@ interface Props {
 const {
   headlineTop = "SPECIALTY",
   headlineBottom = "KAVA & GO",
-  description = "100% арабіка свіжого обсмажування. Справжня кава з собою, дріп-пакети та добірне зерно для твого ідеального ранку.",
+  description = "100% спешелті-арабіка свіжого обсмажування: зерно, дріп-пакети та кава з собою. Помел під ваш спосіб приготування, доставка по всій Україні за 1-2 дні.",
   imageSrc = "/images/header-images.png",
 } = Astro.props;
 ---
@@ -25,12 +25,12 @@ const {
       >
         {headlineTop}
       </h1>
-      <h2
+      <div
         class="tracking-wider select-none text-center -mt-2 lg:-mt-6"
         style="color: rgba(217, 197, 178, 0.45); font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(70px, 15.6vw, 226px); font-style: normal; font-weight: 400; line-height: 1; margin: 0px;"
       >
         {headlineBottom}
-      </h2>
+      </div>
     </div>
 
     <!-- Centered Visual Graphic (Image kept intact per instructions) -->
@@ -56,7 +56,7 @@ const {
           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#8A4B29]/40 text-[#8A4B29] bg-[#EFE6DC]/60 hover:bg-[#8A4B29] hover:text-white transition-all cursor-pointer w-fit shadow-xs no-underline"
           style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;"
         >
-          <span>ОБРАТИ КАВУ</span>
+          <span>ВИБРАТИ ЗЕРНО</span>
           <svg class="w-4 h-4 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M7 17L17 7"></path>
             <path d="M10 7h7v7"></path>
@@ -73,7 +73,7 @@ const {
         <div class="w-full h-[1px] bg-[#8A4B29]/20 my-1"></div>
         <div>
           <div class="text-2xl text-[#8A4B29]" style="font-family: 'Rammetto One', cursive, sans-serif; font-weight: normal;">4.9★</div>
-          <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 13px;">ВІДГУКИ ГОСТЕЙ</div>
+          <div class="tracking-wider text-[#6E5849]" style="font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 13px;">СЕРЕДНЯ ОЦІНКА</div>
         </div>
         <div class="w-full h-[1px] bg-[#8A4B29]/20 my-1"></div>
         <div>
@@ -93,12 +93,12 @@ const {
       >
         {headlineTop}
       </h1>
-      <h2
+      <div
         class="tracking-wider select-none text-center -mt-1"
         style="color: rgba(217, 197, 178, 0.55); font-family: 'Rammetto One', cursive, sans-serif; font-size: clamp(34px, 11vw, 52px); line-height: 1; margin: 0px;"
       >
         {headlineBottom}
-      </h2>
+      </div>
     </div>
 
     <div class="flex flex-col gap-3 items-center text-center w-full">

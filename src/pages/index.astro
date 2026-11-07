@@ -10,11 +10,56 @@ import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 import CheckoutModal from '../components/CheckoutModal.astro';
+import { PRODUCTS } from '../lib/products';
+import { FAQS } from '../lib/faqs';
+
+const products = Object.values(PRODUCTS);
+
+const schemaGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CafeOrCoffeeShop',
+      name: 'Kava & Go',
+      description:
+        'Кавовий бренд: 100% спешелті-арабіка Q 84+ свіжого обсмажування, кава з собою, дріп-пакети та зерно з помелом під ваш спосіб приготування.',
+      image: '/images/header-images.png',
+      servesCuisine: 'Coffee',
+      priceRange: '₴'
+    },
+    ...products.map((p) => ({
+      '@type': 'Product',
+      name: p.title,
+      image: p.image,
+      description: p.description,
+      brand: { '@type': 'Brand', name: 'Kava & Go' },
+      weight: {
+        '@type': 'QuantitativeValue',
+        value: 250,
+        unitCode: 'GRM'
+      },
+      offers: {
+        '@type': 'Offer',
+        price: p.price,
+        priceCurrency: 'UAH',
+        availability: 'https://schema.org/InStock'
+      }
+    })),
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQS.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer }
+      }))
+    }
+  ]
+};
 ---
 
 <Layout
-  title="Kava & Go — Справжня крафтова кава з собою та свіже зерно"
-  description="Kava & Go: 100% Specialty Арабіка свіжого обсмажування. Смачна кава з собою, добірні дріп-пакети та кавове зерно."
+  title="Кава в зернах та дріп-пакети — Kava & Go | Свіже обсмажування"
+  description="100% спешелті-арабіка Q 84+ свіжого обсмажування. Зерно на вибір помелу, дріп-пакети та кава з собою. Доставка Новою Поштою 1-2 дні, знижка 15% на перше замовлення."
 >
   <main class="min-h-screen w-full bg-[#F7F2EB]">
     <!-- Top Hero Wrap: Header + Hero -->
@@ -47,4 +92,6 @@ import CheckoutModal from '../components/CheckoutModal.astro';
     <!-- Fast Checkout & PayMock Payment Modal -->
     <CheckoutModal />
   </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
 </Layout>

@@ -1,6 +1,7 @@
 ---
 interface Review {
   quote: string;
+  author: string;
   bgColor: string;
   quoteColor: string;
 }
@@ -8,16 +9,19 @@ interface Review {
 const reviews: Review[] = [
   {
     quote: "ІДЕАЛЬНИЙ БАЛАНС СМАКУ ТА ГУСТА КРЕМА.",
+    author: "Андрій, Київ",
     bgColor: "#8A4325", // Rich Cinnamon Terracotta
     quoteColor: "#6B3016",
   },
   {
     quote: "ДРІП-ПАКЕТИ ВРЯТУВАЛИ МІЙ РАНОК У ДОРОЗІ!",
+    author: "Марія, Львів",
     bgColor: "#314436", // Deep Specialty Roast Green
     quoteColor: "#202E24",
   },
   {
     quote: "НЕЙМОВІРНИЙ АРОМАТ ТА БЕЗДОГАННИЙ СЕРВІС.",
+    author: "Олена, Одеса",
     bgColor: "#C27838", // Warm Caramel Amber
     quoteColor: "#995A22",
   },
@@ -52,6 +56,12 @@ const reviews: Review[] = [
           >
             {rev.quote}
           </h3>
+          <p
+            class="mt-3 sm:mt-4 uppercase tracking-wider"
+            style="color: rgba(255, 248, 237, 0.75); font-family: 'Fuzzy Bubbles', cursive, sans-serif; font-size: 13px; font-weight: 700; margin: 0;"
+          >
+            {rev.author}
+          </p>
         </div>
       </div>
     ))}

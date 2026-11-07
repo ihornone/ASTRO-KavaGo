@@ -3,6 +3,7 @@ export interface CoffeeProduct {
   name: string;
   title: string;
   subtitle: string;
+  tagline: string;
   price: number; // in UAH
   originalPrice?: number; // in UAH
   amountKopecks: number; // in kopecks for PayMock
@@ -22,6 +23,7 @@ export const PRODUCTS: Record<string, CoffeeProduct> = {
     name: 'KAVA & GO CLASSIC',
     title: 'Kava & Go Classic 100% Arabica',
     subtitle: '100% Арабіка • Середнє обсмаження • Знижка 15%',
+    tagline: 'ШОКОЛАД • КАРАМЕЛЬ • ГОРІХ • ЗНИЖКА 15%',
     price: 275,
     originalPrice: 320,
     amountKopecks: 27500,
@@ -31,7 +33,8 @@ export const PRODUCTS: Record<string, CoffeeProduct> = {
     image: '/images/1st-image.png',
     accentColor: '#8A4B29',
     buttonBg: '#8A4B29',
-    description: 'Добірні зерна 100% арабіки дбайливого середнього обсмажування. Глибокий оксамитовий смак з нотами шоколаду та ніжним карамельним посмаком.',
+    description:
+      'Добірні зерна 100% арабіки дбайливого середнього обсмажування. Глибокий оксамитовий смак з нотами темного шоколаду та карамелі, легкий горіховий післясмак. Однаково добрий у чорній і з молоком.',
     flavorNotes: ['Шоколад', 'Карамель', 'Горіховий посмак']
   },
   'kava-and-go-hazelnut': {
@@ -39,6 +42,7 @@ export const PRODUCTS: Record<string, CoffeeProduct> = {
     name: 'KAVA & GO HAZELNUT',
     title: 'Kava & Go Hazelnut Arabica',
     subtitle: 'Натуральний фундук • Середнє обсмаження • Знижка 15%',
+    tagline: 'СМАЖЕНИЙ ФУНДУК • ПРЯНОЩІ • ВЕРШКОВИЙ БАЛАНС • ЗНИЖКА 15%',
     price: 290,
     originalPrice: 340,
     amountKopecks: 29000,
@@ -48,7 +52,8 @@ export const PRODUCTS: Record<string, CoffeeProduct> = {
     image: '/images/2nd-image.png',
     accentColor: '#4B6144',
     buttonBg: '#4B6144',
-    description: 'Вишукана арабіка з багатим теплим ароматом смаженого фундука. Ідеальний вибір для неспішного ранку або заряджаючої кава-паузи.',
+    description:
+      'Вишукана арабіка з теплим ароматом смаженого фундука та легкими пряними нотами. Вершковий збалансований смак для неспішного ранку або заряджаючої кава-паузи.',
     flavorNotes: ['Смажений фундук', 'Прянощі', 'Вершковий баланс']
   }
 };
