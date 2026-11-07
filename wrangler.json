@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "coffee",
+  "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2026-10-11",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
