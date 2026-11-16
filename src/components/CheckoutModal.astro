@@ -7,22 +7,23 @@
 
 <div
   id="checkout-modal"
-  class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200"
+  style="transition-timing-function: var(--ease-out);"
   role="dialog"
   aria-modal="true"
   aria-labelledby="modal-title"
 >
   <div
     id="modal-card"
-    class="relative w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto"
-    style="background-color: #FAF6F0; border: 2px solid #8A4B29;"
+    class="relative w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl transform scale-95 transition-transform duration-220 max-h-[90vh] overflow-y-auto"
+    style="background-color: #FAF6F0; border: 2px solid #8A4B29; transition-timing-function: var(--ease-out);"
   >
     <!-- Close Button -->
     <button
       id="close-modal-btn"
       type="button"
-      class="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110 active:scale-95"
-      style="background-color: #EDE3D5; color: #2B1810; border: 1.5px solid #8A4B29;"
+      class="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-120 hover:scale-105 active:scale-95"
+      style="background-color: #EDE3D5; color: #2B1810; border: 1.5px solid #8A4B29; transition-timing-function: var(--ease-out);"
       aria-label="Закрити"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2B1810" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -42,13 +43,13 @@
       </h3>
     </div>
 
-    <!-- Product Selected Card -->
+    <!-- Product Selected Card (Concentric inner card) -->
     <div
-      class="flex items-center gap-4 p-4 rounded-2xl mb-6 shadow-sm"
+      class="flex items-center gap-4 p-4 rounded-xl mb-6 shadow-sm"
       style="background-color: #EDE3D5; border: 1.5px solid #8A4B29;"
     >
       <div
-        class="w-20 h-20 rounded-xl flex items-center justify-center p-2 shrink-0 overflow-hidden shadow-inner"
+        class="w-20 h-20 rounded-lg flex items-center justify-center p-2 shrink-0 overflow-hidden shadow-inner"
         id="modal-prod-img-wrap"
         style="background-color: #2C1810;"
       >
@@ -57,29 +58,29 @@
       <div class="flex-1 min-w-0">
         <h4
           id="modal-prod-name"
-          class="text-base sm:text-lg font-bold truncate"
+          class="text-base sm:text-lg font-bold line-clamp-2 leading-snug"
           style="color: #2B1810; font-family: 'Rammetto One', cursive, sans-serif; margin: 0;"
         >
           KAVA &amp; GO CLASSIC
         </h4>
         <p
           id="modal-prod-sub"
-          class="text-xs sm:text-sm font-bold mt-0.5"
+          class="text-xs sm:text-sm font-bold mt-0.5 truncate"
           style="color: #6E5849; font-family: 'Fuzzy Bubbles', cursive, sans-serif; margin: 0;"
         >
           250г • 100% Арабіка
         </p>
-        <div class="flex items-baseline gap-2 mt-1.5">
+        <div class="flex items-baseline gap-2 mt-1.5 tabular-nums">
           <span
             id="modal-prod-price"
-            class="text-xl font-bold"
+            class="text-xl font-bold tabular-nums"
             style="color: #8A4B29; font-family: 'Rammetto One', cursive, sans-serif;"
           >
             275 ₴
           </span>
           <span
             id="modal-prod-orig-price"
-            class="text-xs line-through"
+            class="text-xs line-through tabular-nums"
             style="color: #8A4B29; opacity: 0.6;"
           >
             320 ₴
@@ -108,14 +109,14 @@
             <button
               type="button"
               id="qty-dec-btn"
-              class="w-9 h-9 rounded-lg font-bold text-lg flex items-center justify-center transition-all hover:opacity-90 active:scale-95 cursor-pointer"
-              style="background-color: #8A4B29; color: #FFFFFF; border: none;"
+              class="w-9 h-9 rounded-lg font-bold text-lg flex items-center justify-center transition-transform duration-100 hover:opacity-90 active:scale-90 cursor-pointer"
+              style="background-color: #8A4B29; color: #FFFFFF; border: none; transition-timing-function: var(--ease-out);"
             >
               −
             </button>
             <span
               id="qty-display"
-              class="w-12 text-center font-bold text-lg"
+              class="w-12 text-center font-bold text-lg tabular-nums"
               style="color: #2B1810; font-family: 'Rammetto One', cursive, sans-serif;"
             >
               1
@@ -123,8 +124,8 @@
             <button
               type="button"
               id="qty-inc-btn"
-              class="w-9 h-9 rounded-lg font-bold text-lg flex items-center justify-center transition-all hover:opacity-90 active:scale-95 cursor-pointer"
-              style="background-color: #8A4B29; color: #FFFFFF; border: none;"
+              class="w-9 h-9 rounded-lg font-bold text-lg flex items-center justify-center transition-transform duration-100 hover:opacity-90 active:scale-90 cursor-pointer"
+              style="background-color: #8A4B29; color: #FFFFFF; border: none; transition-timing-function: var(--ease-out);"
             >
               +
             </button>
@@ -150,6 +151,7 @@
             id="cust-name"
             name="customerName"
             required
+            maxlength="100"
             placeholder="Олександр"
             class="w-full px-3.5 py-2.5 rounded-xl text-sm focus:outline-none shadow-xs"
             style="background-color: #FFFFFF; border: 1.5px solid #8A4B29; color: #2B1810; font-family: 'Fuzzy Bubbles', cursive, sans-serif;"
@@ -168,6 +170,8 @@
             id="cust-phone"
             name="customerPhone"
             required
+            pattern="^[\\+]?[0-9\\s\\-\\(\\)]{10,20}$"
+            title="Формат: +380XXXXXXXXX або 0XXXXXXXXX"
             placeholder="+380 67 123 45 67"
             class="w-full px-3.5 py-2.5 rounded-xl text-sm focus:outline-none shadow-xs"
             style="background-color: #FFFFFF; border: 1.5px solid #8A4B29; color: #2B1810; font-family: 'Fuzzy Bubbles', cursive, sans-serif;"
@@ -188,8 +192,9 @@
           type="email"
           id="cust-email"
           name="customerEmail"
+          maxlength="120"
           placeholder="your@email.com"
-          class="w-full px-3.5 py-2.5 rounded-xl text-sm focus:outline-none shadow-xs"
+          class="w-full max-w-full px-3.5 py-2.5 rounded-xl text-sm focus:outline-none shadow-xs"
           style="background-color: #FFFFFF; border: 1.5px solid #8A4B29; color: #2B1810; font-family: 'Fuzzy Bubbles', cursive, sans-serif;"
         />
       </div>
@@ -231,7 +236,7 @@
         <div class="text-right">
           <span
             id="modal-total-sum"
-            class="text-3xl font-bold"
+            class="text-3xl font-bold tabular-nums"
             style="color: #8A4B29; font-family: 'Rammetto One', cursive, sans-serif;"
           >
             275 ₴
@@ -253,8 +258,8 @@
       <button
         type="submit"
         id="pay-submit-btn"
-        class="w-full py-4 px-6 rounded-2xl font-bold uppercase tracking-wider text-base shadow-lg transition-transform hover:scale-[1.01] active:scale-95 cursor-pointer flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
-        style="background-color: #8A4B29; color: #FFFFFF; font-family: 'Rammetto One', cursive, sans-serif; border: none;"
+        class="w-full py-4 px-6 rounded-2xl font-bold uppercase tracking-wider text-base shadow-lg transition-transform duration-140 hover:scale-[1.01] active:scale-97 cursor-pointer flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+        style="background-color: #8A4B29; color: #FFFFFF; font-family: 'Rammetto One', cursive, sans-serif; border: none; transition-timing-function: var(--ease-out);"
       >
         <span id="pay-btn-spinner" class="hidden animate-spin">
           <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
